@@ -1,0 +1,14 @@
+<%-include('partials/header') %>
+	<form method="POST" action="/paymentApprFrm">
+		<input type="" name="apprBasic" placeholder="Approval Basic" />
+		<input type="" name="apprGST" placeholder="Approval GST" />
+		<input name="remarks" placeholder="Remarks" />
+		<span>
+		<label>Approval Status: </label>
+			<input type="checkbox" name="apprStatus" />
+		</span>
+		<input name="approver" placeholder="Approver" />
+		<button type="submit">Submit</button>
+	</form>
+
+<%-include('partials/footer') %>

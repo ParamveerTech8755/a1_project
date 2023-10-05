@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="../styles/index.css" />
+	<title>A1 Agri Pvt. Ltd.</title>
+</head>
+<body class="body-container">
+	<div class="header">
+		<div>
+			<h1>A1 Agri Pvt. Ltd.<h1>
+		</div>
+		<div style="justify-content: end; margin-top: -20px">
+			<span style="margin: 0 20px"><%= username %></span>
+			<span style="margin: 0 20px"><a href='/logout'>Logout</a></span>
+		</div>
+		<%-include('partials/navbar')%>
+	</div>
+	<div>
+		<table class="view">
+			<tr>
+				<% for(let prop in dataArray[0]){ %>
+					<th><%=prop%></th>
+				<% } %>
+			</tr>
+				<% dataArray.forEach(obj => { %>
+					<tr>
+						<% for(let prop in obj){ %>
+							<td><%= obj[prop] %></td>
+						<%}%>
+					</tr>
+				<% })%>
+		</table>
+	</div>
+
+	<div class="footer"><a href="/selectmode"><button>Back</button></a></div>
+
+</body>
+</html>

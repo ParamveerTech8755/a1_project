@@ -1,0 +1,19 @@
+<%- include('../partials/header') %>
+
+<form method="POST" action="/billRcptFrm">
+	<input type="number" name="billRcvId" placeholder="Bill Recieving Id" />
+	<input type="date" name="billDt" placeholder="Bill Date" />
+	<input type="number" name="billNo" placeholder="Bill No" />
+	<input type="date" name="billRcvDt" placeholder="Bill Recieving Date" />
+	<input type="text" name="div" placeholder="Division" />
+	<input name="party" placeholder="Party" />
+	<input type="text" name="ourRef" placeholder="Our Reference" />
+	<input type="text" name="matServDscr" placeholder="MatServDscr" />
+	<input type="number" name="acptdBillTxble" placeholder="Accepted Bill Taxable" />
+	<input type="number" name="gstPerctg" placeholder="GST %" />
+	<input type="number" name="acptdTtlGSTVal" placeholder="Accepted Total GST Value" />
+	<button type="submit">Submit</button>
+</form>
+
+
+<%- include('../partials/footer') %>

@@ -1,0 +1,11 @@
+<%-include('partials/header') %>
+
+	<form method="POST" action="/paymentRfrFrm">
+		<input name="pymtType" placeholder="Payment Type" />
+		<input name="pymtMode" placeholder="Payment Mode" />
+		<input type="date" name="pymtDate" placeholder="Payment Date" />
+		<input type="number" name="pymtAmt" placeholder="Payment Amount" />
+		<input name="remarks" placeholder="Remarks" />
+		<button type="submit">Submit</button>
+
+<%-include('partials/footer') %>

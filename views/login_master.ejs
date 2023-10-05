@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="../styles/index.css" />
+	</style>
+	<title>A1 Agri Pvt. Ltd.</title>
+</head>
+<body>
+	<div style="margin:2em 0; text-align: center;"><h1>A1 Agri Pvt. Ltd.<h1></div>
+	<div class="instructions">
+		<h2>Login as master</h2>
+		<p>For registering a user, login with master priviledges</p>
+	</div>
+	<div class="login_master">
+		<form class="authenticate" method="POST" action="/auth/login_master">
+			<input type="text" name="username" placeholder="Username" />
+			<input type="password" name="password" placeholder="Password" />
+			<button type="submit">Submit</button>
+		</form>
+	</div>
+	<div class="footer"><a href="/auth"><button>Back</button></a></div>
+</body>
+</html>
