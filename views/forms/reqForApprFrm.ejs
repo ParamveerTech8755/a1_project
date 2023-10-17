@@ -1,11 +1,63 @@
-<%-include('partials/header') %>
+<%-include('../partials/header') %>
+<div style="flex-direction: column;">
+<form method="POST" action="/edit/reqForAppr">
+	<div class="hidden">
+		<input type="number" name="apprId" value="<%= formReviewData.apprId %>" />
+	</div>
+	<input type="number" name="billRcvId" placeholder="Bill Recieving Id" value="<%= formReviewData.billRcvId %>" />
+	<input type="number" name="billTtlAppr" placeholder="Total Bill Approved" value="<%=formReviewData.billTtlAppr%>" />
+	<input type="number" name="billApprBal" placeholder="Total Bill ApprovedBalance" value="<%=formReviewData.billApprBal%>" />
+	<input type="number" name="billAmtPaid" placeholder="Bill Amount Paid" value="<%=formReviewData.billAmtPaid%>" />
+	<input type="number" name="billBalPyble" placeholder="Bill Balance Payable" value="<%=formReviewData.billBalPyble%>" />
+	<input type="number" name="reqForApprBasic" placeholder="Request for approval basic" value="<%=formReviewData.reqForApprBasic%>" />
+	<input type="number" name="reqForApprGST" placeholder="Request for approval GST" value="<%=formReviewData.reqForApprGST%>" />
+	<input name="remarks" placeholder="Remarks" value="<%=formReviewData.remarks%>" />
+	<div class="btn-container">		
+		<button onclick="review()" id="review-btn" formaction="/edit/reqForAppr/review">Review</button>
+		<button type="submit" id="submit-btn">Submit</button>
+	</div>
+	<div class="hidden">
+		<input name="ttlRFApprAmt" value="<%= formReviewData.ttlRFApprAmt %>" />
+	</div>
 
-<form>
-	<input type="number" name="billRcvId" placeholder="Bill Recieving Id" />
-	<input type="number" name="reqForApprBasic" placeholder="Request for approval basic" />
-	<input type="number" name="reqForApprGST" placeholder="Request for approval GST" />
-	<input name="remarks" placeholder="Remarks" />
-	<button type="submit">Submit</button>
 </form>
 
-<%-include('partials/footer') %>
+<div>
+	<table class='view'>
+	</table>
+</div>
+
+<div class="footer"><a href="/selectmode"><button>Back</button></a></div>
+<script>
+			const data = <%- JSON.stringify(formReviewData) %>
+			const count = <%- count.reqForAppr %>
+			const submit = document.getElementById('submit-btn')
+			const inputArray = document.querySelector('form').getElementsByTagName('input')
+			const table = document.querySelector('table')
+			table.innerHTML = ''
+			const rowHeading = table.insertRow(0)
+			const rowData = table.insertRow(1)
+			if(count === 0)
+				submit.classList.add('hidden')
+			
+			//review
+			let i = 0
+			for(let prop in data){
+				rowHeading.insertCell(i).innerHTML = prop.toString()
+				rowData.insertCell(i).innerHTML = data[prop].toString()
+				i++
+			}
+
+			function review(){
+				//find all the wierd values
+
+				const reqForApprBasic = document.querySelector('input[name="reqForApprBasic"]')
+				const reqForApprGST = document.querySelector('input[name="reqForApprGST"]')
+				const ttlRFApprAmt = document.querySelector('input[name="ttlRFApprAmt"]')
+				ttlRFApprAmt.value = (parseInt(reqForApprGST.value) + parseInt(reqForApprBasic.value)).toString()
+			}
+
+
+</script>
+
+<%-include('../partials/footer') %>

@@ -1,6 +1,6 @@
 <div class="navbar">
-		<a href='/view/billRcptFrm'>Bill Reciept</a>
-		<a href='/view/paymentApprFrm'>Payment Approval</a>
-		<a href='/view/paymentRfrFrm'>Payment Reference</a>
-		<a href='/view/reqForApprFrm'>Req for Approval</a>
+
+	<% for(let i = 0; i <= n; i++){%>
+		<a href='/<%=mode%>/<%=dbArray[i][0]%>'><%=dbArray[i][1]%></a>
+	<% }%>
 </div>

@@ -1,11 +1,71 @@
-<%-include('partials/header') %>
+<%-include('../partials/header') %>
+<div style="flex-direction: column;">
 
-	<form method="POST" action="/paymentRfrFrm">
-		<input name="pymtType" placeholder="Payment Type" />
-		<input name="pymtMode" placeholder="Payment Mode" />
-		<input type="date" name="pymtDate" placeholder="Payment Date" />
-		<input type="number" name="pymtAmt" placeholder="Payment Amount" />
-		<input name="remarks" placeholder="Remarks" />
-		<button type="submit">Submit</button>
+	<form method="POST" action="/edit/paymentRfr">
+		<div class="hidden">
+			<input type="number" name="pymtId" value="<%=formReviewData.pymtId%>" />
+		</div>
+		<input type="number" name="apprId" placeholder="Approval Id" value="<%=formReviewData.apprId%>">
+		<input type="number" name="pymtAmt" placeholder="Payment Amount" value="<%=formReviewData.pymtAmt%>" />
+		<input type="date" name="pymtDt" placeholder="Payment Date" value="<%=formReviewData.pymtDt%>" />
+		<div>
+			<label>Payment Type:</label>
+			<select name="pymtTyp">
+				<option>Money Trfr</option>
+				<option>TDS</option>
+				<option>Debit Note</option>
+				<option>Discount</option>
+			</select>
+		</div>
+		<div>
+			<label>Payment Method:</label>
+			<select name="pymtMthd">
+				<option>Electronic Trfr</option>
+				<option>Cheque</option>
+				<option>Demand Draft</option>
+				<option>Cash</option>
+				<option>Ac Adjustment</option>
+			</select>
+		</div>
+		<input name="remarks" placeholder="Remarks" value="<%=formReviewData.remarks%>" />
+		<div class="btn-container">
+			<button id="review-btn" formaction="/edit/paymentRfr/review">Review</button>
+			<button type="submit" id="submit-btn">Submit</button>
+		</div>
+	</form>
+</div>
 
-<%-include('partials/footer') %>
+<div>
+	<table class='view'>
+	</table>
+</div>
+
+<div class="footer"><a href="/selectmode"><button>Back</button></a></div>
+<script type="text/javascript">
+
+			const count = <%-count.paymentRfr%>
+			const data = <%-JSON.stringify(formReviewData)%>
+			for(let prop in data){
+				console.log(prop)
+			}
+
+			const submit = document.getElementById('submit-btn')
+			const inputArray = document.querySelector('form').getElementsByTagName('input')
+			const table = document.querySelector('table')
+			table.innerHTML = ''
+			const rowHeading = table.insertRow(0)
+			const rowData = table.insertRow(1)
+			if(count === 0)
+				submit.classList.add('hidden')
+
+			//review
+			let i = 0
+			for(let prop in data){
+				rowHeading.insertCell(i).innerHTML = prop.toString()
+				rowData.insertCell(i).innerHTML = data[prop]
+				i++
+			}
+
+</script>
+
+<%-include('../partials/footer') %>

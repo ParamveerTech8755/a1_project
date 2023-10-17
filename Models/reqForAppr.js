@@ -1,9 +1,15 @@
 import {Schema, model} from 'mongoose'
 
 const reqForApprSchema = new Schema({
-	// billRcvId: /**/,
+	apprId: {type: Number, unique: true},
+	billRcvId: Number,
+	billTtlAppr: Number,
+	billApprBal: Number,
+	billAmtPaid: Number,
+	billBalPyble: Number,
 	reqForApprBasic: Number,
 	reqForApprGST: Number,
+	ttlRFApprAmt: Number,
 	remarks: String
 }, {timestamps: true})
 

@@ -2,6 +2,7 @@
 import {Schema, model} from 'mongoose'
 
 const billRcptSchema = new Schema({
+	billRcvId: {type: Number, unique: true},
 	billDt: String,
 	billNo: String,
 	billRcvDt: String,
@@ -9,12 +10,14 @@ const billRcptSchema = new Schema({
 	party: String,
 	ourRef: String,
 	matServDscr: String,
+	ttlBillval: Number,
 	acptdBillTxble: Number,
 	gstPerctg: Number,
-	acptdTtlGSTVal: Number
+	acptdTtlGSTVal: Number,
+	acptdTtlBillVal: Number
 }, {timestamps: true})
 
-//incomplete
+//complete
 
 const billRcptModel = model('billRcpt', billRcptSchema)
 export default billRcptModel

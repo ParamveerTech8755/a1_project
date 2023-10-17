@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="styles/index.css" />
+	<link rel="stylesheet" type="text/css" href="../styles/index.css" />
 	<title>A1 Agri Global Pvt Limited</title>
 </head>
 <body>
@@ -13,4 +13,24 @@
 		<a href='/paymentRfrFrm'>Payment Reference</a>
 		<a href='/reqForApprFrm'>Req for Approval</a>
 	</div>
-	<div class="container">
+	<div class="container"> -->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="../styles/index.css" />
+	<title>A1 Agri Pvt Ltd</title>
+</head>
+<body class="body-container">
+	<div class="header">
+		<div>
+			<h1>A1 Agri Pvt Ltd</h1>
+		</div>
+		<div style="justify-content: end; margin-top: -20px">
+			<span style="margin: 0 20px"><%= username %></span>
+			<span style="margin: 0 20px"><a href='/logout'>Logout</a></span>
+		</div>
+		<%-include('navbar')%>
+	</div>

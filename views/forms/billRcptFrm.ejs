@@ -1,19 +1,97 @@
-<%- include('../partials/header') %>
+<%-include('../partials/header')%>
+<div style="flex-direction: column;">
+	<form method="POST" action="/edit/billRcpt">
+		<div class="hidden">
+			<input type="number" name="billRcvId" value="<%=formReviewData.billRcvId%>" />
+		</div>
+		<input type="date" name="billDt" placeholder="Bill Date" value="<%=formReviewData.billDt%>" />
+		<input list="billNo" name="billNo" placeholder="Bill No" value="<%=formReviewData.billNo%>" />
+		<datalist id="billNo">
+			<% data.forEach(ele => { %>
+				<option value="<%=ele.billNo%>">
+			<% }) %>
+		</datalist>
+		<input type="date" name="billRcvDt" placeholder="Bill Recieving Date" value="<%=formReviewData.billRcvDt%>" />
+		<input list="div" name="div" placeholder="Division" value="<%=formReviewData.div%>" />
+		<datalist id="div">
+			<% data.forEach(ele => { %>
+				<option value="<%=ele.div%>">
+			<% }) %>
+		</datalist>
+		<input list="party" name="party" placeholder="Party" value="<%=formReviewData.party%>" />
+		<datalist id="party">
+			<% data.forEach(ele => { %>
+				<option value="<%=ele.party%>">
+			<% }) %>
+		</datalist>
+		<input list="ourRef" name="ourRef" placeholder="Our Reference" value="<%=formReviewData.ourRef%>" />
+		<datalist id="ourRef">
+			<% data.forEach(ele => { %>
+				<option value="<%=ele.ourRef%>">
+			<% }) %>
+		</datalist>
+		<input list="matServDscr" name="matServDscr" placeholder="MatServDscr" value="<%=formReviewData.matServDscr%>" />
+		<datalist id="matServDscr">
+			<% data.forEach(ele => { %>
+				<option value="<%=ele.matServDscr%>">
+			<% }) %>
+		</datalist>
+		<input type="number" name="ttlBillVal" placeholder="Total Bill Value" value="<%=formReviewData.ttlBillVal%>" />
+		<input type="number" name="acptdBillTxble" placeholder="Accepted Bill Taxable" value="<%=formReviewData.acptdBillTxble%>" />
+		<input type="number" name="gstPerctg" placeholder="GST %" value="<%=formReviewData.gstPerctg%>" />
+		<input type="number" name="acptdTtlGSTVal" placeholder="Accepted Total GST Value" value="<%=formReviewData.acptdTtlGSTVal%>" />
+		<div class="btn-container">
+			<button onclick="review()" id="review-btn" formaction="/edit/billRcpt/review">Review</button>
+			<button type="submit" id="submit-btn">Submit</button>
+		</div>
+		<div class="hidden">
+			<input name="acptdTtlBillVal" value="<%=formReviewData.acptdTtlBillVal%>" />
+		</div>
+	</form>
+</div>
+<div>
+	<table class='view'>
+	</table>
+</div>
 
-<form method="POST" action="/billRcptFrm">
-	<input type="number" name="billRcvId" placeholder="Bill Recieving Id" />
-	<input type="date" name="billDt" placeholder="Bill Date" />
-	<input type="number" name="billNo" placeholder="Bill No" />
-	<input type="date" name="billRcvDt" placeholder="Bill Recieving Date" />
-	<input type="text" name="div" placeholder="Division" />
-	<input name="party" placeholder="Party" />
-	<input type="text" name="ourRef" placeholder="Our Reference" />
-	<input type="text" name="matServDscr" placeholder="MatServDscr" />
-	<input type="number" name="acptdBillTxble" placeholder="Accepted Bill Taxable" />
-	<input type="number" name="gstPerctg" placeholder="GST %" />
-	<input type="number" name="acptdTtlGSTVal" placeholder="Accepted Total GST Value" />
-	<button type="submit">Submit</button>
-</form>
+<div class="footer"><a href="/selectmode"><button>Back</button></a></div>
 
+	<script>
+		const data = <%- JSON.stringify(formReviewData) %>
+		const count = <%- count.billRcpt %>
 
-<%- include('../partials/footer') %>
+		const submit = document.getElementById('submit-btn')
+		const table = document.querySelector('table')
+		const inputArray = document.querySelector('form').getElementsByTagName('input')
+		table.innerHTML = ''
+		const rowHeading = table.insertRow(0)
+		const rowData = table.insertRow(1)
+		if(count === 0)
+			submit.classList.add('hidden')
+
+		
+
+		//review
+			// rowHeading.insertCell(0).innerHTML = 'billRcvId'
+			// rowData.insertCell(0).innerHTML = data.id
+			let i = 0
+			for(let prop in data){
+				rowHeading.insertCell(i).innerHTML = prop.toString()
+				rowData.insertCell(i).innerHTML = data[prop].toString()
+				i++
+			}
+			// for(let i = 0; i < inputArray.length; i++){
+			// 	rowHeading.insertCell(i).innerHTML = inputArray[i].name
+			// }
+			// for(let i = 0; i < inputArray.length; i++){
+			// 	rowData.insertCell(i).innerHTML = inputArray[i].value
+			// }
+
+			function review(){
+				//find all the wierd values
+				const acptdBillTxble = document.querySelector('input[name="acptdBillTxble"]')
+				const acptdTtlBillVal = document.querySelector('input[name="acptdTtlBillVal"]')
+				acptdTtlBillVal.value = acptdBillTxble.value
+			}
+	</script>
+<%-include('../partials/footer')%>

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="styles/index.css">
+	<link rel="stylesheet" type="text/css" href="../styles/index.css">
 	<title>A1 Agri Pvt. Ltd.</title>
 </head>
 <body>
@@ -19,7 +19,7 @@
 		<div class="selectmode">
 
 			<div>
-			<button class="dropbtn edit">Edit</button>
+			<button class="dropbtn">Edit</button>
 				<div class="dropdown-content">
 					<% for(let i = 0; i <= n; i++) {%>
 						<a href="/edit/<%=dbArray[i][0]%>"><%=dbArray[i][1]%></a>
@@ -27,7 +27,7 @@
 				</div>
 			</div>
 			<div>
-			<button class="dropbtn view">View</button>
+			<button class="dropbtn">View</button>
 				<div class="dropdown-content">
 					<a href="/view/billRcpt">Bill Receipt Database</a>
 					<a href="/view/reqForAppr">Request for Approval Database</a>

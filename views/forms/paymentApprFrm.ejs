@@ -1,14 +1,69 @@
-<%-include('partials/header') %>
-	<form method="POST" action="/paymentApprFrm">
-		<input type="" name="apprBasic" placeholder="Approval Basic" />
-		<input type="" name="apprGST" placeholder="Approval GST" />
-		<input name="remarks" placeholder="Remarks" />
+<%-include('../partials/header') %>
+<div style="flex-direction: column;">
+	<form method="POST" action="/edit/paymentAppr">
+		<input type="number" name="apprId" placeholder="Approval Id" value="<%=formReviewData.apprId%>" />
+		<input type="number" name="apprdBasic" placeholder="Approved Basic" value="<%=formReviewData.apprdBasic%>" />
+		<input type="number" name="apprdGST" placeholder="Approved GST" value="<%=formReviewData.apprdGST%>" />
+		<input name="remarks" placeholder="Remarks" value="<%=formReviewData.remarks%>" />
 		<span>
 		<label>Approval Status: </label>
-			<input type="checkbox" name="apprStatus" />
+			<!-- <input type="checkbox" name="apprStatus" /> -->
+			<select name="apprStatus" value="<%=formReviewData.apprStatus%>">
+				<option value="Approved">Approved</option>
+				<option value="Pending">Pending</option>
+				<option value="Rejected">Rejected</option>
+			</select>
 		</span>
-		<input name="approver" placeholder="Approver" />
-		<button type="submit">Submit</button>
+		<input name="approver" list="apprList" placeholder="Approver" value="<%=formReviewData.approver%>" />
+			<datalist id="apprList">
+				<%data.forEach(ele => { %>
+				<option value="<%=ele.approver%>">
+					<% })%>
+			</datalist>
+		<div class="btn-container">		
+			<button onclick="review()" id="review-btn" formaction="/edit/paymentAppr/review">Review</button>
+			<button type="submit" id="submit-btn">Submit</button>
+		</div>
+		<div class="hidden">
+			<input type="number" name="apprdTtlAmt" value="<%=formReviewData.apprdTtlAmt%>" />
+		</div>
 	</form>
+</div>
+<div>
+	<table class='view'>
+	</table>
+</div>
 
-<%-include('partials/footer') %>
+<div class="footer"><a href="/selectmode"><button>Back</button></a></div>
+<script>
+			const count = <%-count.paymentAppr%>
+			const data = <%-JSON.stringify(formReviewData)%>
+
+			const submit = document.getElementById('submit-btn')
+			const inputArray = document.querySelector('form').getElementsByTagName('input')
+			const table = document.querySelector('table')
+			table.innerHTML = ''
+			const rowHeading = table.insertRow(0)
+			const rowData = table.insertRow(1)
+			if(count === 0)
+				submit.classList.add('hidden')
+
+			//review
+			let i = 0
+			for(let prop in data){
+				rowHeading.insertCell(i).innerHTML = prop.toString()
+				rowData.insertCell(i).innerHTML = data[prop].toString()
+				i++
+			}
+
+			function review(){
+				//find all the wierd values
+				const apprdBasic = document.querySelector('input[name="apprBasic"]')
+				const apprdGST = document.querySelector('input[name="apprGST"]')
+				const apprdTtlAmt = document.querySelector('input[name="apprTtlAmt"]')
+				apprdTtlAmt.value = parseInt(apprdBasic.value) + parseInt(apprdGST.value)
+			}
+
+</script>
+
+<%-include('../partials/footer') %>

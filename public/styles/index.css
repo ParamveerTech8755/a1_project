@@ -49,7 +49,7 @@ div{
   transform-origin: bottom left;
 }
 .container{
-	display: flex;
+	flex-direction: column;
 	height: 100%;
 	justify-content: center;
 	align-items: center;
@@ -72,8 +72,16 @@ form input[type="checkbox"]{
 	width: 1.1rem;
 	height: 1.1rem;
 }
+.btn-container{
+	grid-column-start: 1;
+	grid-column-end: 4;
+	justify-content: space-around;
+	align-items: center;
+}
+.hidden{
+	display: none;
+}
 button{
-	grid-column-start: 2;
 	font-size: 1.1em;
 	padding: 6px 8px;
 	outline: none;
@@ -85,6 +93,9 @@ button:hover{
 	background-color: #fff;
 	color: #3085C3;
 	border-radius: 10px;
+}
+#review-btn{
+	margin-top: 1rem;
 }
 div.auth{
 	position: relative;
@@ -104,7 +115,8 @@ div.login_master{
 }
 div.login{
 	position: relative;
-	top: -15%;
+	top: -10%;
+	flex-direction: column;
 }
 div.register{
 	position: relative;
@@ -113,6 +125,7 @@ div.register{
 }
 div.footer{
 	justify-content: end;
+	width: 100%;
 	position: relative;
 }
 div.footer button{
@@ -140,7 +153,7 @@ div.selectmode > div{
 .dropdown-content{
 	flex-direction: column;
 	position: absolute;
-	top: 30px;
+	top: 38px;
 /*	margin-top: 30px;*/
 	display: none;
 }
@@ -173,7 +186,9 @@ div.selectmode > div{
 }
 .view{
 	margin: 10px;
+	padding: 0 10px;
 	border-collapse: collapse;
+	width: 100%;
 }
 .view td, .view th{
 	padding: 6px 8px;

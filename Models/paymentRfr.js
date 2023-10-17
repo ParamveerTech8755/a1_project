@@ -1,10 +1,13 @@
 import {Schema, model} from 'mongoose'
 
 const paymentRfrSchema = new Schema({
+	pymtId: Number,
+	apprId: Number,
+	// billRcvId: Number,
 	pymtAmt: Number,
-	pymtType: String,
-	pymtMode: String,
-	pymtDate: String,
+	pymtTyp: String,
+	pymtMthd: String,
+	pymtDt: String,
 	remarks: String
 }, {timestamps: true})
 
