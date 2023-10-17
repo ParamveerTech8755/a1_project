@@ -1,0 +1,13 @@
+steps:
+- name: node:18.7.0
+  entrypoint: npm
+  args: ["install"]
+- name: node:18.7.0
+  entrypoint: npm
+  args: ["run", "create-env"]
+  env:
+    - 'MONGODB_URI=${_MONGODB_URI}'
+    - 'SECRET=${_SECRET}'
+- name: "gcr.io/cloud-builders/gcloud"
+  args: ["app", "deploy"]
+timeout: "1600s"
